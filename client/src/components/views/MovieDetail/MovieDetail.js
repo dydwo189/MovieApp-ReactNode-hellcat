@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { List, Avatar, Row, Col, Button } from 'antd';
 import axios from 'axios';
-
 import Comments from './Sections/Comments'
 import LikeDislikes from './Sections/LikeDislikes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config'
 import GridCards from '../commons/GridCards';
-import MainImage from '../../views/LandingPage/Sections/MainImage';
+import MainImage from '../LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
 function MovieDetailPage(props) {
@@ -111,8 +110,10 @@ function MovieDetailPage(props) {
                     <Row gutter={[16, 16]}>
                         {
                             !LoadingForCasts ? Casts.map((cast, index) => (
-                                cast.profile_path &&
-                                <GridCards actor image={cast.profile_path} characterName={cast.characterName} />
+                                cast.profile_path && 
+                                <React.Fragment key={index}>
+                                <GridCards  actor image={cast.profile_path} characterName={cast.characterName}  />
+                                </React.Fragment>
                             )) :
                                 <div>loading...</div>
                         }
